@@ -1,3 +1,4 @@
+
 # Cabe no Bolso — Planejador de Despesas Compartilhadas
 
 ![Java](https://img.shields.io/badge/Java-25_LTS-orange)
@@ -11,7 +12,7 @@
 - **Instituição:** Universidade de Fortaleza — Unifor
 - **Curso:** Análise e Desenvolvimento de Sistemas
 - **Disciplina:** Programação Orientada a Objetos
-- **Equipe:** Grupo 12
+- **Equipe:** Grupo 44
 - **Ano:** 2026
 
 ## Sobre o projeto
@@ -28,7 +29,7 @@ A aplicação destina-se a estudantes, amigos, familiares e demais grupos que ne
 
 ## Integrantes e contribuições
 
-O projeto foi desenvolvido coletivamente pelos integrantes do Grupo 12, com divisão de responsabilidades entre as etapas de modelagem, implementação, interface gráfica, persistência, testes e documentação.
+O projeto foi desenvolvido coletivamente pelos integrantes do Grupo 44, com divisão de responsabilidades entre as etapas de modelagem, implementação, interface gráfica, persistência, testes e documentação.
 
 | Integrante | Responsabilidade |
 |---|---|
@@ -163,11 +164,17 @@ CabeNoBolso/
 │   ├── referencia_validada.dat
 │   └── teste_persistencia.dat
 ├── docs/
-│   ├── diagrama_classes.png
 │   ├── diagrama_classes.puml
-│   ├── diagrama_classes.svg
 │   ├── modelagem.md
-│   └── TESTES.md
+│   ├── TESTES.md
+│   ├── uml_1_visao_geral.png
+│   ├── uml_1_visao_geral.svg
+│   ├── uml_2_modelo.png
+│   ├── uml_2_modelo.svg
+│   ├── uml_3_persistencia_excecoes.png
+│   ├── uml_3_persistencia_excecoes.svg
+│   ├── uml_4_visao_controlador.png
+│   └── uml_4_visao_controlador.svg
 ├── evidencias/
 ├── excecoes/
 │   ├── ArquivoInvalidoException.java
@@ -301,16 +308,46 @@ Os demais arquivos da pasta `dados` são utilizados em testes específicos de pe
 
 O diagrama de classes representa a estrutura do sistema, suas entidades, atributos, métodos e relacionamentos.
 
-![Diagrama de classes UML](docs/diagrama_classes.png)
+Para facilitar a leitura e a compreensão da modelagem, o diagrama foi organizado em quatro figuras complementares.
 
-Arquivos complementares:
+### 1. Visão geral
 
-- [Diagrama UML em formato PNG](docs/diagrama_classes.png)
-- [Diagrama UML em formato vetorial SVG](docs/diagrama_classes.svg)
+Apresenta uma visão geral das classes e dos relacionamentos do sistema.
+
+![UML — Visão geral](docs/uml_1_visao_geral.png)
+
+[Visualizar em formato vetorial SVG](docs/uml_1_visao_geral.svg)
+
+### 2. Camada de modelo
+
+Apresenta as classes relacionadas às entidades e às regras de negócio da aplicação.
+
+![UML — Camada de modelo](docs/uml_2_modelo.png)
+
+[Visualizar em formato vetorial SVG](docs/uml_2_modelo.svg)
+
+### 3. Persistência e exceções
+
+Apresenta as classes e interfaces responsáveis pela persistência dos dados e pelo tratamento de exceções.
+
+![UML — Persistência e exceções](docs/uml_3_persistencia_excecoes.png)
+
+[Visualizar em formato vetorial SVG](docs/uml_3_persistencia_excecoes.svg)
+
+### 4. Visão e controlador
+
+Apresenta as classes responsáveis pela interface gráfica e pelo controle das operações da aplicação.
+
+![UML — Visão e controlador](docs/uml_4_visao_controlador.png)
+
+[Visualizar em formato vetorial SVG](docs/uml_4_visao_controlador.svg)
+
+### Arquivos complementares
+
 - [Código-fonte do diagrama PlantUML](docs/diagrama_classes.puml)
 - [Documentação da modelagem e arquitetura](docs/modelagem.md)
 
-Recomenda-se consultar a versão SVG para visualizar os detalhes do diagrama com maior resolução.
+Recomenda-se consultar as versões SVG para ampliar os diagramas e visualizar seus detalhes sem perda de qualidade.
 
 ## Caso de referência
 
@@ -578,7 +615,10 @@ A documentação complementar do projeto está organizada nos seguintes arquivos
 |---|---|
 | [Modelagem e arquitetura](docs/modelagem.md) | Descrição das classes, arquitetura MVC, conceitos de POO, persistência e exceções. |
 | [Documentação de testes](docs/TESTES.md) | Registro dos testes e validações realizados. |
-| [Diagrama UML](docs/diagrama_classes.svg) | Representação da estrutura e dos relacionamentos entre as classes. |
+| [UML — Visão geral](docs/uml_1_visao_geral.svg) | Diagrama em formato vetorial. |
+| [UML — Camada de modelo](docs/uml_2_modelo.svg) | Diagrama em formato vetorial. |
+| [UML — Persistência e exceções](docs/uml_3_persistencia_excecoes.svg) | Diagrama em formato vetorial. |
+| [UML — Visão e controlador](docs/uml_4_visao_controlador.svg) | Diagrama em formato vetorial. |
 | [Evidências](evidencias/) | Capturas de tela e resultados textuais das validações. |
 | [Arquivos de exemplo](dados/) | Planejamentos e arquivos utilizados nos testes. |
 
@@ -648,7 +688,7 @@ Os dados financeiros utilizados nos cenários de demonstração são fictícios.
 
 ## Créditos
 
-Desenvolvido pelos integrantes do Grupo 12:
+Desenvolvido pelos integrantes do Grupo 44:
 
 - Carlos Humberto Costa de Oliveira
 - Cauã Henry Barbosa Moreira
@@ -658,7 +698,7 @@ Desenvolvido pelos integrantes do Grupo 12:
 
 ---
 
-**Cabe no Bolso — Grupo 12**
+**Cabe no Bolso — Grupo 44**
 
 Universidade de Fortaleza — Unifor
 

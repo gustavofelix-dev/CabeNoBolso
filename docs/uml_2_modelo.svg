@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="1115" viewBox="0 0 940 1115" font-family='Menlo, Consolas, "DejaVu Sans Mono", monospace' font-size="12">
+<defs>
+<marker id="tri" markerWidth="16" markerHeight="14" refX="15" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+  <path d="M 1,1 L 15,7 L 1,13 Z" fill="#fff" stroke="#222" stroke-width="1.3"/></marker>
+<marker id="seta" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+  <path d="M 1,1 L 11,6 L 1,11" fill="none" stroke="#222" stroke-width="1.3"/></marker>
+<marker id="losango" markerWidth="20" markerHeight="12" refX="1" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+  <path d="M 1,6 L 10,1 L 19,6 L 10,11 Z" fill="#222" stroke="#222" stroke-width="1"/></marker>
+</defs>
+<rect width="940" height="1115" fill="#fff"/>
+<rect x="15" y="15" width="910" height="1085" fill="#FAFAFA" stroke="#666" stroke-width="1.2"/>
+<rect x="15" y="15" width="72.4" height="22" fill="#E4E4E4" stroke="#666" stroke-width="1.2"/>
+<text x="27" y="31" font-weight="bold" font-size="13">modelo</text>
+<rect x="170" y="60" width="600" height="369" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="170" y="60" width="600" height="25" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="470.0" y="77.5" text-anchor="middle" font-weight="bold" font-size="14" >Planejamento</text>
+<line x1="170" y1="131" x2="770" y2="131" stroke="#222" stroke-width="1.3"/>
+<text x="178" y="100.0" xml:space="preserve">- participantes : TreeMap&lt;Integer, Participante&gt;</text>
+<text x="178" y="118.0" xml:space="preserve">- despesas : List&lt;Despesa&gt;</text>
+<text x="178" y="146.0" xml:space="preserve" >+ cadastrarParticipante(codigo : int, nome : String,</text>
+<text x="178" y="164.0" xml:space="preserve" >    orcamentoCentavos : int) : void</text>
+<text x="178" y="182.0" xml:space="preserve" >+ buscarParticipante(codigo : int) : Participante</text>
+<text x="178" y="200.0" xml:space="preserve" >+ alterarParticipante(codigo : int, novoNome : String,</text>
+<text x="178" y="218.0" xml:space="preserve" >    novoOrcamentoCentavos : int) : void</text>
+<text x="178" y="236.0" xml:space="preserve" >+ excluirParticipante(codigo : int) : void</text>
+<text x="178" y="254.0" xml:space="preserve" >+ getTodosParticipantes() : Collection&lt;Participante&gt;</text>
+<text x="178" y="272.0" xml:space="preserve" >+ incluirDespesa(d : Despesa) : void</text>
+<text x="178" y="290.0" xml:space="preserve" >+ editarDespesa(antiga : Despesa, nova : Despesa) : void</text>
+<text x="178" y="308.0" xml:space="preserve" >+ excluirDespesa(d : Despesa) : void</text>
+<text x="178" y="326.0" xml:space="preserve" >+ getDespesas() : List&lt;Despesa&gt;</text>
+<text x="178" y="344.0" xml:space="preserve" >+ calcularTotalDoParticipante(codigo : int) : int</text>
+<text x="178" y="362.0" xml:space="preserve" >+ calcularCustoTotal() : int</text>
+<text x="178" y="380.0" xml:space="preserve" >+ estaDentroDoOrcamento(codigo : int) : boolean</text>
+<text x="178" y="398.0" xml:space="preserve" >+ calcularExcedente(codigo : int) : int</text>
+<text x="178" y="416.0" xml:space="preserve" >- validarParticipantesCadastrados(d : Despesa) : void</text>
+<rect x="30" y="514" width="390" height="261" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="30" y="514" width="390" height="25" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="225.0" y="531.5" text-anchor="middle" font-weight="bold" font-size="14" >Participante</text>
+<line x1="30" y1="603" x2="420" y2="603" stroke="#222" stroke-width="1.3"/>
+<text x="38" y="554.0" xml:space="preserve">- codigo : int {readOnly}</text>
+<text x="38" y="572.0" xml:space="preserve">- nome : String</text>
+<text x="38" y="590.0" xml:space="preserve">- orcamentoCentavos : int</text>
+<text x="38" y="618.0" xml:space="preserve" >+ Participante(codigo : int, nome : String,</text>
+<text x="38" y="636.0" xml:space="preserve" >    orcamentoCentavos : int)</text>
+<text x="38" y="654.0" xml:space="preserve" >+ getCodigo() : int</text>
+<text x="38" y="672.0" xml:space="preserve" >+ getNome() : String</text>
+<text x="38" y="690.0" xml:space="preserve" >+ setNome(nome : String) : void</text>
+<text x="38" y="708.0" xml:space="preserve" >+ getOrcamentoCentavos() : int</text>
+<text x="38" y="726.0" xml:space="preserve" >+ setOrcamentoCentavos(</text>
+<text x="38" y="744.0" xml:space="preserve" >    orcamentoCentavos : int) : void</text>
+<text x="38" y="762.0" xml:space="preserve" >+ toString() : String</text>
+<rect x="500" y="514" width="420" height="275" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="500" y="514" width="420" height="39" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="710.0" y="531.5" text-anchor="middle" font-size="12">«abstract»</text>
+<text x="710.0" y="545.8" text-anchor="middle" font-weight="bold" font-size="14" font-style="italic" >Despesa</text>
+<line x1="500" y1="617" x2="920" y2="617" stroke="#222" stroke-width="1.3"/>
+<text x="508" y="568.0" xml:space="preserve">- descricao : String</text>
+<text x="508" y="586.0" xml:space="preserve">- valorCentavos : int</text>
+<text x="508" y="604.0" xml:space="preserve">- participantes : TreeMap&lt;Integer, Participante&gt;</text>
+<text x="508" y="632.0" xml:space="preserve" ># Despesa(descricao : String, valorCentavos : int,</text>
+<text x="508" y="650.0" xml:space="preserve" >    participantes : List&lt;Participante&gt;)</text>
+<text x="508" y="668.0" xml:space="preserve" font-style="italic" >+ calcularRateio() : Map&lt;Integer, Integer&gt;</text>
+<text x="508" y="686.0" xml:space="preserve" font-style="italic" >+ getTipo() : String</text>
+<text x="508" y="704.0" xml:space="preserve" >+ getDescricao() : String</text>
+<text x="508" y="722.0" xml:space="preserve" >+ getValorCentavos() : int</text>
+<text x="508" y="740.0" xml:space="preserve" >+ getParticipantes() : List&lt;Participante&gt;</text>
+<text x="508" y="758.0" xml:space="preserve" >+ calcularCustoTotal() : int</text>
+<text x="508" y="776.0" xml:space="preserve" >+ toString() : String</text>
+<rect x="150" y="859" width="350" height="133" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="150" y="859" width="350" height="25" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="325.0" y="876.5" text-anchor="middle" font-weight="bold" font-size="14" >DespesaFixa</text>
+<line x1="150" y1="892" x2="500" y2="892" stroke="#222" stroke-width="1.3"/>
+<text x="158" y="907.0" xml:space="preserve" >+ DespesaFixa(descricao : String,</text>
+<text x="158" y="925.0" xml:space="preserve" >    valorCentavos : int,</text>
+<text x="158" y="943.0" xml:space="preserve" >    participantes : List&lt;Participante&gt;)</text>
+<text x="158" y="961.0" xml:space="preserve" >+ calcularRateio() : Map&lt;Integer, Integer&gt;</text>
+<text x="158" y="979.0" xml:space="preserve" >+ getTipo() : String</text>
+<rect x="530" y="859" width="390" height="133" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="530" y="859" width="390" height="25" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="725.0" y="876.5" text-anchor="middle" font-weight="bold" font-size="14" >DespesaPorPessoa</text>
+<line x1="530" y1="892" x2="920" y2="892" stroke="#222" stroke-width="1.3"/>
+<text x="538" y="907.0" xml:space="preserve" >+ DespesaPorPessoa(descricao : String,</text>
+<text x="538" y="925.0" xml:space="preserve" >    valorPorPessoaCentavos : int,</text>
+<text x="538" y="943.0" xml:space="preserve" >    participantes : List&lt;Participante&gt;)</text>
+<text x="538" y="961.0" xml:space="preserve" >+ calcularRateio() : Map&lt;Integer, Integer&gt;</text>
+<text x="538" y="979.0" xml:space="preserve" >+ getTipo() : String</text>
+<path d="M 30,1017 L 456,1017 L 470,1031 L 470,1085 L 30,1085 Z" fill="#FFF8C4" stroke="#8a7a00" stroke-width="1"/>
+<path d="M 456,1017 L 456,1031 L 470,1031" fill="none" stroke="#8a7a00" stroke-width="1"/>
+<text x="38" y="1034" font-size="12">Polimorfismo: o Planejamento guarda referências</text>
+<text x="38" y="1052" font-size="12">do tipo Despesa e chama calcularRateio(), que</text>
+<text x="38" y="1070" font-size="12">cada subclasse sobrescreve do seu jeito.</text>
+<path d="M 490,1017 L 906,1017 L 920,1031 L 920,1085 L 490,1085 Z" fill="#FFF8C4" stroke="#8a7a00" stroke-width="1"/>
+<path d="M 906,1017 L 906,1031 L 920,1031" fill="none" stroke="#8a7a00" stroke-width="1"/>
+<text x="498" y="1034" font-size="12">Participante, Despesa e Planejamento</text>
+<text x="498" y="1052" font-size="12">implementam Serializable e declaram</text>
+<text x="498" y="1070" font-size="12">serialVersionUID (persistência).</text>
+<path d="M 250.0,429.0 L 250.0,514.0" fill="none" stroke="#222" stroke-width="1.3" marker-start="url(#losango)"/>
+<text x="242.0" y="447.0" text-anchor="end" font-size="12">1</text>
+<text x="242.0" y="507.0" text-anchor="end" font-size="12">0..*</text>
+<text x="260.0" y="475.5" text-anchor="start" font-size="12">participantes</text>
+<path d="M 700.0,429.0 L 700.0,514.0" fill="none" stroke="#222" stroke-width="1.3" marker-start="url(#losango)"/>
+<text x="710.0" y="447.0" text-anchor="start" font-size="12">1</text>
+<text x="710.0" y="507.0" text-anchor="start" font-size="12">0..*</text>
+<text x="690.0" y="475.5" text-anchor="end" font-size="12">despesas</text>
+<path d="M 500.0,624.0 L 420.0,624.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#seta)"/>
+<text x="494.0" y="617.0" text-anchor="end" font-size="12">0..*</text>
+<text x="428.0" y="617.0" text-anchor="start" font-size="12">1..*</text>
+<text x="460.0" y="641.0" text-anchor="middle" font-size="12">envolvidos</text>
+<path d="M 325.0,859.0 L 325.0,824.0 L 725.0,824.0 L 725.0,859.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 710.0,824.0 L 710.0,789.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#tri)"/>
+</svg>

@@ -1,294 +1,125 @@
-
-# Modelagem, arquitetura MVC, persistência e exceções
+# Modelagem, persistência e exceções
 
 Projeto **Cabe no Bolso**: planejador de despesas compartilhadas.
-
-Este documento explica o diagrama de classes, a arquitetura MVC, os conceitos de orientação a objetos, a persistência, o tratamento de exceções e os testes realizados no sistema.
+Este documento explica o diagrama de classes e as decisões da parte de **persistência, exceções e UML**.
 
 ## 1. Diagrama de classes
 
-![Diagrama de classes](diagrama_classes.png)
+O sistema tem 18 classes. Com todos os atributos e operações num desenho só, a imagem fica pequena demais para ler em uma página. Por isso o diagrama foi dividido em quatro figuras, cada uma feita para caber na largura da página:
 
-A imagem também está disponível em formato vetorial ([diagrama_classes.svg](diagrama_classes.svg)), que pode ser ampliado sem perder qualidade.
+| Figura | Arquivo | Conteúdo |
+|---|---|---|
+| Visão geral | [`uml_1_visao_geral.png`](uml_1_visao_geral.png) | Todas as classes (só os nomes), pacotes MVC e todas as relações. |
+| Modelo | [`uml_2_modelo.png`](uml_2_modelo.png) | Atributos, operações e multiplicidades do pacote `modelo`. |
+| Persistência e exceções | [`uml_3_persistencia_excecoes.png`](uml_3_persistencia_excecoes.png) | Interface de persistência, classe de arquivo e hierarquia de exceções. |
+| Visão e controlador | [`uml_4_visao_controlador.png`](uml_4_visao_controlador.png) | `Main`, janela, painéis Swing e `PlanejamentoController`. |
 
-O arquivo [diagrama_classes.puml](diagrama_classes.puml) contém o código-fonte do diagrama em PlantUML.
+![Visão geral](uml_1_visao_geral.png)
+![Modelo](uml_2_modelo.png)
+![Persistência e exceções](uml_3_persistencia_excecoes.png)
+![Visão e controlador](uml_4_visao_controlador.png)
 
-O diagrama representa as classes principais dos pacotes modelo, controlador, visao, persistencia e excecoes, além da classe Main.
+Cada figura também está em vetor (`.svg`), que pode ser ampliado sem perder qualidade. O arquivo [`diagrama_classes.puml`](diagrama_classes.puml) é o diagrama completo em PlantUML, num arquivo só, para quem quiser editar ou conferir.
 
-As imagens podem ser geradas pela extensão PlantUML do VS Code, utilizando o comando PlantUML: Export Current Diagram.
+Visibilidades usadas: `+` público, `-` privado, `#` protegido. Nome em itálico indica classe ou método abstrato. Todas as classes do modelo também têm `serialVersionUID` (omitido do desenho para não poluir).
 
-Visibilidades utilizadas:
+## 2. Justificativa das relações
 
-- `+`: público.
-- `-`: privado.
-- `#`: protegido.
-
-As classes abstratas e os métodos abstratos são identificados no diagrama. Os atributos serialVersionUID foram omitidos para facilitar a visualização.
-
-## 2. Arquitetura MVC
-
-O projeto utiliza a arquitetura Model-View-Controller (MVC), separando as regras de negócio, a interface gráfica e o controle das operações.
-
-### Model (modelo)
-
-Responsável pelos dados e pelas regras de negócio.
-
-- `Participante`: representa uma pessoa cadastrada, com código, nome e orçamento.
-- `Planejamento`: gerencia participantes, despesas e cálculos financeiros.
-- `Despesa`: classe abstrata que representa as características comuns das despesas.
-- `DespesaFixa`: realiza a divisão de um valor fixo entre os participantes envolvidos.
-- `DespesaPorPessoa`: calcula despesas cujo valor é cobrado individualmente.
-
-### View (visao)
-
-Responsável pela interação com o usuário, utilizando Java Swing.
-
-- `JanelaPrincipal`: organiza as abas e os botões de salvar e carregar.
-- `PainelParticipantes`: permite cadastrar e editar participantes.
-- `PainelDespesas`: permite cadastrar, editar e excluir despesas, selecionando os participantes envolvidos.
-- `PainelResumo`: apresenta as despesas, o custo total, os totais individuais, a situação dos orçamentos e os excedentes.
-
-A interface utiliza componentes como JFrame, JPanel, JTable, JButton, JTextField, JComboBox, JCheckBox, JTabbedPane, JFileChooser e JOptionPane.
-
-### Controller (controlador)
-
-A classe `PlanejamentoController` realiza a comunicação entre a interface gráfica e o modelo.
-
-Suas responsabilidades incluem:
-
-- Encaminhar operações de cadastro e edição de participantes.
-- Encaminhar operações de cadastro, edição e exclusão de despesas.
-- Instanciar o tipo adequado de despesa.
-- Disponibilizar os resultados dos cálculos financeiros.
-- Converter valores monetários para centavos utilizando BigDecimal.
-- Salvar e carregar o planejamento por meio da persistência.
-
-Os três painéis compartilham a mesma instância do controlador, garantindo que utilizem o mesmo planejamento.
-
-### Inicialização
-
-A classe `Main` é responsável por iniciar a aplicação e abrir a janela principal.
-
-### Persistência e exceções
-
-Os pacotes persistencia e excecoes complementam a arquitetura, permitindo armazenar o planejamento em arquivos locais e tratar falhas de leitura e gravação.
-
-## 3. Justificativa das relações
-
-| Relação | Multiplicidade | Tipo | Justificativa |
+| Relação | Multiplicidade | Tipo | Por quê |
 |---|---|---|---|
-| Planejamento → Participante | 1 para 0..* | Composição | Os participantes pertencem ao planejamento e são armazenados em um TreeMap, com o código como chave. |
-| Planejamento → Despesa | 1 para 0..* | Composição | As despesas pertencem ao planejamento e são armazenadas em uma List. |
-| Despesa → Participante | 0..* para 1..* | Associação | Cada despesa referencia pelo menos um participante cadastrado. Excluir uma despesa não exclui os participantes. |
-| DespesaFixa e DespesaPorPessoa → Despesa | - | Herança | As subclasses reutilizam características comuns e implementam suas próprias regras de rateio. |
-| PersistenciaArquivo → PersistenciaPlanejamento | - | Realização | A classe implementa o contrato de salvar e carregar planejamentos. |
-| PersistenciaPlanejamento → Planejamento | - | Dependência | A persistência recebe e devolve objetos Planejamento. |
-| ArquivoNaoEncontradoException e ArquivoInvalidoException → PersistenciaException | - | Herança | Permite tratar falhas de persistência de forma geral ou específica. |
-| PlanejamentoController → Planejamento | 1 para 1 | Associação | O controlador mantém uma referência ao planejamento em uso. |
-| Painéis → PlanejamentoController | - | Associação | Os painéis compartilham o controlador para acessar as operações do sistema. |
-| JanelaPrincipal → Painéis | 1 para 1 de cada tipo | Composição | A janela cria e organiza os três painéis da aplicação. |
-| JanelaPrincipal → JFrame | - | Herança | A janela principal utiliza os recursos da classe JFrame. |
-| Painéis → JPanel | - | Herança | Os painéis utilizam os recursos da classe JPanel. |
-| PlanejamentoController → PersistenciaPlanejamento | - | Dependência | O controlador utiliza o contrato de persistência. |
-| PlanejamentoController → PersistenciaArquivo | - | Dependência | O controlador instancia a implementação de persistência em arquivo. |
-| Main → JanelaPrincipal | - | Dependência | A classe Main inicializa a interface gráfica. |
+| `Planejamento` → `Participante` | 1 para 0..* | Composição | Os participantes cadastrados fazem parte do planejamento: sem planejamento não existe cadastro. Ficam em um `TreeMap` com o código como chave, o que impede código duplicado e mantém a ordem crescente de código. |
+| `Planejamento` → `Despesa` | 1 para 0..* | Composição | As despesas pertencem ao planejamento e são guardadas em uma `List`, que mantém a ordem de inclusão. |
+| `Despesa` → `Participante` | 0..* para 1..* | Associação | Uma despesa precisa de pelo menos um participante (regra do enunciado), mas ela só **referencia** quem já está cadastrado. Excluir a despesa não exclui a pessoa. |
+| `Despesa` ◁ `DespesaFixa` e `DespesaPorPessoa` | - | Herança | A superclasse abstrata guarda o que é comum (descrição, valor, participantes e validações). Cada subclasse sobrescreve `calcularRateio()` com a sua regra. |
+| `PersistenciaArquivo` ▷ `PersistenciaPlanejamento` | - | Realização | A interface define o contrato (`salvar` e `carregar`) e a classe de arquivo o cumpre. O controlador usa só a interface. |
+| `PersistenciaPlanejamento` ⇢ `Planejamento` | - | Dependência | A persistência recebe e devolve planejamentos, mas não guarda nenhum como atributo. |
+| `PersistenciaException` ◁ `ArquivoNaoEncontradoException` e `ArquivoInvalidoException` | - | Herança | Permite tratar toda falha de arquivo de uma vez (superclasse) ou cada caso separadamente (subclasses). |
+| `JanelaPrincipal` → `PainelParticipantes`, `PainelDespesas` e `PainelResumo` | 1 para 1 (cada) | Composição | A janela cria os três painéis e os coloca nas abas: eles só existem dentro dela. |
+| Painéis → `PlanejamentoController` | 1 | Associação | Cada painel guarda o mesmo controlador e encaminha a ele as ações do usuário (MVC). |
+| `PlanejamentoController` → `Planejamento` | 1 | Associação | O controlador guarda o planejamento em uso e o troca ao carregar um arquivo. |
+| `PlanejamentoController` ⇢ `PersistenciaPlanejamento` | - | Dependência | Salva e carrega pela interface, criando um `PersistenciaArquivo` a partir do arquivo escolhido. |
+| `JFrame` ◁ `JanelaPrincipal` e `JPanel` ◁ painéis | - | Herança | As telas são componentes Swing. |
 
-## 4. Conceitos de programação orientada a objetos
+## 3. Onde aparece cada conceito de POO
 
-| Conceito | Aplicação no projeto |
+| Conceito | Onde |
 |---|---|
-| Encapsulamento | Atributos privados, métodos de acesso e validações. As coleções retornadas pelo planejamento não permitem modificações diretas. |
-| Herança | DespesaFixa e DespesaPorPessoa estendem Despesa. As exceções específicas estendem PersistenciaException. A interface gráfica também utiliza herança de JFrame e JPanel. |
-| Polimorfismo | O planejamento trabalha com referências do tipo Despesa e executa calcularRateio() conforme a implementação de cada subclasse. |
-| Interface | PersistenciaPlanejamento define o contrato de persistência. Serializable permite a serialização dos objetos do modelo. |
-| Abstração | Despesa representa as características comuns dos diferentes tipos de despesas e não pode ser instanciada diretamente. |
-| Composição | O planejamento contém participantes e despesas. A janela principal contém os painéis da interface gráfica. |
+| Encapsulamento | Atributos `private` em todas as classes, com acesso por getters e setters validados. `Planejamento.getDespesas()` e `getTodosParticipantes()` devolvem coleções não modificáveis. `PersistenciaArquivo` guarda o `caminho` como `private final`. |
+| Herança | `DespesaFixa` e `DespesaPorPessoa` estendem `Despesa`. As exceções de persistência estendem `PersistenciaException`. |
+| Polimorfismo | `Planejamento` guarda `Despesa` e chama `calcularRateio()`, e o Java escolhe a versão da subclasse. Ao carregar do arquivo, cada despesa volta com a sua classe original (`DespesaFixa` ou `DespesaPorPessoa`). |
+| Interface | `PersistenciaPlanejamento` (contrato de persistência) e `Serializable` (modelo). |
+| Abstração | `Despesa` é abstrata e não pode ser instanciada. |
 
-## 5. Persistência
+## 4. Persistência
 
-**Formato:** serialização de objetos utilizando ObjectOutputStream e ObjectInputStream.
+**Formato:** serialização de objetos (`ObjectOutputStream` e `ObjectInputStream`), como pede o enunciado. Todas as classes do modelo implementam `Serializable` e declaram `serialVersionUID`.
 
-Participante, Despesa e Planejamento implementam Serializable. As subclasses de Despesa também são serializáveis por herança.
+**Planejamento completo em uma só gravação.** O `writeObject` é chamado uma única vez com o `Planejamento` inteiro. Se o mesmo objeto aparece em dois lugares, o Java o grava uma vez e guarda referências. Por isso o `Participante` do cadastro e o `Participante` dentro de cada `Despesa` continuam sendo o **mesmo objeto** depois de carregar. Essa é a forma de preservar as relações entre participantes e despesas sem duplicar registros (o `TestePersistencia` confere esse ponto).
 
-### Preservação dos relacionamentos
+**Fluxos fechados.** Salvar e carregar usam `try-with-resources`, que fecha os fluxos mesmo quando ocorre erro.
 
-O método writeObject grava o planejamento completo.
+**Salvar com segurança.** Os dados são gravados primeiro em `<arquivo>.tmp` e só depois trocam o arquivo definitivo (`Files.move`). Se a gravação falhar no meio (disco cheio, sem permissão), o arquivo salvo antes continua intacto. O temporário é apagado em qualquer caso.
 
-Quando o mesmo objeto aparece em diferentes partes da estrutura, a serialização preserva suas referências. Dessa forma, os participantes associados às despesas continuam sendo os mesmos objetos presentes no cadastro após o carregamento.
+**Carregar sem risco.** `carregar()` devolve um `Planejamento` novo e nunca mexe no que está em uso. Se qualquer coisa falhar, a exceção é lançada antes de devolver algo, então uma falha ao carregar **preserva o planejamento em uso**.
 
-O TestePersistencia verifica essa preservação.
+## 5. Exceções
 
-### Fechamento dos fluxos
+| Situação | Exceção | Mensagem (resumo) |
+|---|---|---|
+| Arquivo não existe | `ArquivoNaoEncontradoException` | "Arquivo não encontrado: ..." |
+| Arquivo vazio ou cortado | `ArquivoInvalidoException` | "... está vazio ou incompleto." |
+| Arquivo que não é planejamento (texto, imagem, outro objeto) | `ArquivoInvalidoException` | "... não é um arquivo de planejamento válido ou está corrompido." |
+| Arquivo de outra versão das classes | `ArquivoInvalidoException` | "... foi gerado por uma versão incompatível do programa." |
+| Caminho é uma pasta | `PersistenciaException` ao salvar, `ArquivoInvalidoException` ao carregar | "... é uma pasta, não um arquivo." |
+| Sem permissão, disco cheio, erro de E/S | `PersistenciaException` | "Não foi possível salvar/ler ..." |
+| Caminho vazio ou planejamento nulo | `IllegalArgumentException` | "Informe o caminho do arquivo!" / "Não há planejamento para salvar!" |
 
-As operações de leitura e gravação utilizam try-with-resources, garantindo o fechamento dos fluxos mesmo quando ocorre uma exceção.
+As três exceções de arquivo são **verificadas** (`extends Exception`): o compilador obriga a interface a tratar a falha, que pode acontecer mesmo com o programa correto. A exceção técnica original fica em `getCause()`.
 
-### Segurança na gravação
+As **validações do modelo** (código duplicado, valor negativo, despesa sem participantes, campo vazio) continuam sendo `IllegalArgumentException` com mensagem clara, como nas partes A e B. O controlador deve tratar os dois tipos: `IllegalArgumentException` (regra violada) e `PersistenciaException` (falha de arquivo).
 
-Os dados são gravados inicialmente em um arquivo temporário e posteriormente transferidos para o arquivo definitivo utilizando Files.move.
-
-Essa estratégia reduz o risco de perder um arquivo válido caso ocorra uma falha durante a gravação dos dados.
-
-### Segurança no carregamento
-
-O método carregar() retorna o planejamento recuperado do arquivo.
-
-O controlador substitui o planejamento atual somente após o carregamento ser concluído com sucesso.
-
-Caso ocorra uma exceção durante a leitura, o planejamento que estava em uso permanece preservado.
-
-## 6. Tratamento de exceções
-
-| Situação | Exceção |
-|---|---|
-| Arquivo inexistente | ArquivoNaoEncontradoException |
-| Arquivo vazio ou incompleto | ArquivoInvalidoException |
-| Arquivo corrompido ou de formato inválido | ArquivoInvalidoException |
-| Arquivo de versão incompatível | ArquivoInvalidoException |
-| Tentativa de salvar em uma pasta | PersistenciaException |
-| Tentativa de carregar uma pasta | ArquivoInvalidoException |
-| Erro de leitura ou gravação | PersistenciaException |
-| Caminho vazio ou planejamento nulo | IllegalArgumentException |
-| Dados inválidos de participantes ou despesas | IllegalArgumentException |
-
-As exceções de persistência são verificadas (checked exceptions), permitindo que as falhas de arquivo sejam tratadas explicitamente.
-
-As validações das regras de negócio utilizam IllegalArgumentException.
-
-O controlador encaminha as operações e propaga as exceções para a interface gráfica, que apresenta mensagens ao usuário utilizando JOptionPane.
-
-## 7. Integração da persistência com a interface gráfica
-
-Ao iniciar o programa, o controlador cria um planejamento vazio.
-
-O usuário pode cadastrar novos dados ou carregar um planejamento anteriormente salvo.
-
-### Método de salvamento no controlador
+## 6. Como o controlador deve usar a persistência
 
 ```java
-public void salvarPlanejamento(File arquivo)
-        throws PersistenciaException {
+PersistenciaPlanejamento persistencia = new PersistenciaArquivo("dados/planejamento.dat");
 
-    PersistenciaPlanejamento persistencia =
-            new PersistenciaArquivo(arquivo);
+// Ao abrir o programa: sem arquivo salvo, começa vazio
+Planejamento planejamento;
+try {
+    planejamento = persistencia.carregar();
+} catch (ArquivoNaoEncontradoException e) {
+    planejamento = new Planejamento();
+} catch (PersistenciaException e) {
+    JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    planejamento = new Planejamento();
+}
 
+// Botão Salvar
+try {
     persistencia.salvar(planejamento);
+} catch (PersistenciaException e) {
+    JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+}
+
+// Botão Carregar: só troca o planejamento em uso se carregar() der certo
+try {
+    planejamento = persistencia.carregar();
+    // atualizar as tabelas da interface
+} catch (PersistenciaException e) {
+    JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    // o planejamento antigo continua valendo
 }
 ```
 
-### Método de carregamento no controlador
+## 7. Testes da persistência
 
-```java
-public void carregarPlanejamento(File arquivo)
-        throws PersistenciaException {
+Execute `persistencia.TestePersistencia` (instruções no README do projeto). Ele cobre:
 
-    PersistenciaPlanejamento persistencia =
-            new PersistenciaArquivo(arquivo);
-
-    Planejamento carregado = persistencia.carregar();
-
-    planejamento = carregado;
-}
-```
-
-### Botão Salvar planejamento
-
-1. Abre um seletor de arquivos com JFileChooser.
-2. Permite escolher o local e o nome do arquivo.
-3. Acrescenta a extensão .dat quando necessário.
-4. Solicita confirmação caso o arquivo já exista.
-5. Solicita ao controlador o salvamento.
-6. Apresenta uma mensagem de sucesso ou erro.
-
-### Botão Carregar planejamento
-
-1. Abre um seletor de arquivos com JFileChooser.
-2. Permite selecionar um planejamento salvo.
-3. Solicita confirmação antes de substituir o planejamento atual.
-4. Solicita ao controlador o carregamento.
-5. Atualiza os painéis de participantes, despesas e resumo.
-6. Apresenta uma mensagem de sucesso ou erro.
-
-Se o carregamento falhar, o planejamento anterior permanece em uso.
-
-## 8. Representação monetária e rateio
-
-Os valores monetários são armazenados como números inteiros em centavos, evitando imprecisões nos cálculos financeiros com ponto flutuante.
-
-O controlador utiliza BigDecimal para converter os valores digitados pelo usuário.
-
-Nas despesas fixas, quando a divisão não é exata, os centavos restantes são distribuídos seguindo a ordem crescente dos códigos dos participantes.
-
-Nas despesas por pessoa, cada participante envolvido recebe o valor individual informado.
-
-O resumo financeiro apresenta o custo total do planejamento, os totais individuais, os orçamentos e os valores excedentes.
-
-Um participante cujo total de despesas é igual ao orçamento é considerado dentro do orçamento.
-
-## 9. Testes da persistência
-
-Os testes automatizados podem ser executados com:
-
-```bash
-java persistencia.TestePersistencia
-```
-
-Cenários verificados:
-
-| Cenário | Verificação |
+| Cenário do enunciado | Verificação |
 |---|---|
-| Salvar e carregar | Participantes, despesas, tipos, valores e relacionamentos preservados. |
-| Alteração de orçamento | Atualização da situação financeira após a alteração. |
-| Exclusão de despesa | Recálculo dos valores e preservação após salvar e carregar. |
-| Sobrescrita de arquivo | Atualização dos dados armazenados. |
-| Planejamento vazio | Salvamento e carregamento sem participantes ou despesas. |
-| Arquivos inválidos | Tratamento das exceções e preservação do planejamento em uso. |
+| Salvar e reiniciar | Caso de referência salvo e recuperado: participantes, despesas, tipos, totais, excedentes e vínculos iguais, sem duplicar registros. |
+| Alteração de orçamento | Depois de carregar, o orçamento da Ana a R$ 80,00 deixa o total de R$ 75,00 dentro do limite. |
+| Exclusão de despesa | Excluir a atividade recreativa, salvar e carregar resulta em R$ 60,00 por pessoa e R$ 180,00 no total. |
+| Problema no arquivo | Arquivo ausente, vazio, cortado, de texto, de outro tipo e pasta: mensagem clara e planejamento em uso preservado. |
 
-Resultado observado na execução: **50 verificações e 0 falhas**.
-
-O arquivo de exemplo `dados/caso_referencia.dat` é gerado pela classe `persistencia.GeradorArquivoExemplo`.
-
-## 10. Testes da interface gráfica
-
-Foram realizados testes manuais utilizando a aplicação Swing.
-
-| Funcionalidade | Resultado observado |
-|---|---|
-| Cadastro de participantes | Aprovado |
-| Edição de participantes | Aprovado |
-| Cadastro de despesa fixa | Aprovado |
-| Cadastro de despesa por pessoa | Aprovado |
-| Edição de despesas | Aprovado |
-| Exclusão de despesas | Aprovado |
-| Rejeição de despesas inválidas | Aprovado |
-| Resumo financeiro | Aprovado |
-| Rateio com arredondamento de centavos | Aprovado |
-| Salvamento pela interface gráfica | Aprovado |
-| Carregamento pela interface gráfica | Aprovado |
-| Carregamento de arquivo inválido | Aprovado |
-| Preservação dos dados após falha de carregamento | Aprovado |
-
-### Caso de referência do enunciado
-
-| Participante | Orçamento | Total individual | Excedente |
-|---|---:|---:|---:|
-| Ana | R$ 70,00 | R$ 75,00 | R$ 5,00 |
-| Bruno | R$ 60,00 | R$ 60,00 | R$ 0,00 |
-| Carla | R$ 70,00 | R$ 75,00 | R$ 5,00 |
-
-**Custo total do planejamento: R$ 210,00.**
-
-Os resultados obtidos na interface gráfica corresponderam aos valores esperados no caso de referência.
-
-### Teste de arredondamento
-
-Foi adicionada ao caso de referência uma despesa fixa de R$ 100,00 envolvendo os três participantes.
-
-O rateio dessa despesa resultou em:
-
-- Ana: R$ 33,34.
-- Bruno: R$ 33,33.
-- Carla: R$ 33,33.
-
-A soma dos valores corresponde exatamente a R$ 100,00, respeitando a distribuição dos centavos restantes pela ordem crescente dos códigos.
-
-O custo total do planejamento durante esse teste foi de R$ 310,00.
+O arquivo de exemplo `dados/caso_referencia.dat` é gerado por `persistencia.GeradorArquivoExemplo`.

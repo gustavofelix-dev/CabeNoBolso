@@ -5,7 +5,7 @@
 - **Instituição:** Universidade de Fortaleza — Unifor
 - **Curso:** Análise e Desenvolvimento de Sistemas
 - **Disciplina:** Programação Orientada a Objetos
-- **Equipe:** Grupo 12
+- **Equipe:** Grupo 44
 - **Projeto:** Cabe no Bolso — Planejador de Despesas Compartilhadas
 - **Data dos testes:** 26/11/2026
 
@@ -626,7 +626,7 @@ Esses resultados não representam uma garantia de ausência de falhas em situaç
 
 ---
 
-**Cabe no Bolso — Grupo 12**
+**Cabe no Bolso — Grupo 44**
 
 Universidade de Fortaleza — Unifor
 

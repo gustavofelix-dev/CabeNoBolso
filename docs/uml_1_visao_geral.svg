@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1120" viewBox="0 0 1100 1120" font-family='Menlo, Consolas, "DejaVu Sans Mono", monospace' font-size="12">
+<defs>
+<marker id="tri" markerWidth="16" markerHeight="14" refX="15" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+  <path d="M 1,1 L 15,7 L 1,13 Z" fill="#fff" stroke="#222" stroke-width="1.3"/></marker>
+<marker id="seta" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+  <path d="M 1,1 L 11,6 L 1,11" fill="none" stroke="#222" stroke-width="1.3"/></marker>
+<marker id="losango" markerWidth="20" markerHeight="12" refX="1" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+  <path d="M 1,6 L 10,1 L 19,6 L 10,11 Z" fill="#222" stroke="#222" stroke-width="1"/></marker>
+</defs>
+<rect width="1100" height="1120" fill="#fff"/>
+<rect x="20" y="100" width="840" height="242" fill="#FAFAFA" stroke="#666" stroke-width="1.2"/>
+<rect x="20" y="100" width="64.3" height="22" fill="#E4E4E4" stroke="#666" stroke-width="1.2"/>
+<text x="32" y="116" font-weight="bold" font-size="13">visao</text>
+<rect x="20" y="397" width="840" height="130" fill="#FAFAFA" stroke="#666" stroke-width="1.2"/>
+<rect x="20" y="397" width="112.7" height="22" fill="#E4E4E4" stroke="#666" stroke-width="1.2"/>
+<text x="32" y="413" font-weight="bold" font-size="13">controlador</text>
+<rect x="20" y="582" width="325" height="264" fill="#FAFAFA" stroke="#666" stroke-width="1.2"/>
+<rect x="20" y="582" width="120.7" height="22" fill="#E4E4E4" stroke="#666" stroke-width="1.2"/>
+<text x="32" y="598" font-weight="bold" font-size="13">persistencia</text>
+<rect x="385" y="582" width="695" height="264" fill="#FAFAFA" stroke="#666" stroke-width="1.2"/>
+<rect x="385" y="582" width="72.4" height="22" fill="#E4E4E4" stroke="#666" stroke-width="1.2"/>
+<text x="397" y="598" font-weight="bold" font-size="13">modelo</text>
+<rect x="20" y="896" width="682" height="204" fill="#FAFAFA" stroke="#666" stroke-width="1.2"/>
+<rect x="20" y="896" width="88.5" height="22" fill="#E4E4E4" stroke="#666" stroke-width="1.2"/>
+<text x="32" y="912" font-weight="bold" font-size="13">excecoes</text>
+<rect x="60" y="20" width="64" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="60" y="20" width="64" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="92.0" y="45.0" text-anchor="middle" font-weight="bold" font-size="14" >Main</text>
+<rect x="367" y="145" width="156" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="367" y="145" width="156" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="445.0" y="170.1" text-anchor="middle" font-weight="bold" font-size="14" >JanelaPrincipal</text>
+<rect x="70" y="255" width="190" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="70" y="255" width="190" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="165.0" y="280.1" text-anchor="middle" font-weight="bold" font-size="14" >PainelParticipantes</text>
+<rect x="371" y="255" width="148" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="371" y="255" width="148" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="445.0" y="280.1" text-anchor="middle" font-weight="bold" font-size="14" >PainelDespesas</text>
+<rect x="654" y="255" width="131" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="654" y="255" width="131" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="719.5" y="280.1" text-anchor="middle" font-weight="bold" font-size="14" >PainelResumo</text>
+<rect x="910" y="145" width="81" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="910" y="145" width="81" height="40" fill="#F3F3F3" stroke="#222" stroke-width="1.3"/>
+<text x="950.5" y="163.1" text-anchor="middle" font-size="12">«Swing»</text>
+<text x="950.5" y="177.4" text-anchor="middle" font-weight="bold" font-size="14" >JFrame</text>
+<rect x="910" y="291" width="81" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="910" y="291" width="81" height="52" fill="#F3F3F3" stroke="#222" stroke-width="1.3"/>
+<text x="950.5" y="315.1" text-anchor="middle" font-size="12">«Swing»</text>
+<text x="950.5" y="329.4" text-anchor="middle" font-weight="bold" font-size="14" >JPanel</text>
+<rect x="338" y="442" width="215" height="60" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="338" y="442" width="215" height="60" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="445.5" y="477.1" text-anchor="middle" font-weight="bold" font-size="14" >PlanejamentoController</text>
+<rect x="45" y="632" width="232" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="45" y="632" width="232" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="161.0" y="656.0" text-anchor="middle" font-size="12">«interface»</text>
+<text x="161.0" y="670.3" text-anchor="middle" font-weight="bold" font-size="14" >PersistenciaPlanejamento</text>
+<rect x="75" y="744" width="190" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="75" y="744" width="190" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="170.0" y="775.0" text-anchor="middle" font-weight="bold" font-size="14" >PersistenciaArquivo</text>
+<rect x="430" y="632" width="131" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="430" y="632" width="131" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="495.5" y="663.0" text-anchor="middle" font-weight="bold" font-size="14" >Planejamento</text>
+<rect x="820" y="632" width="96" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="820" y="632" width="96" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="868.0" y="656.0" text-anchor="middle" font-size="12">«abstract»</text>
+<text x="868.0" y="670.3" text-anchor="middle" font-weight="bold" font-size="14" font-style="italic" >Despesa</text>
+<rect x="430" y="769" width="131" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="430" y="769" width="131" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="495.5" y="794.0" text-anchor="middle" font-weight="bold" font-size="14" >Participante</text>
+<rect x="715" y="759" width="123" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="715" y="759" width="123" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="776.5" y="784.0" text-anchor="middle" font-weight="bold" font-size="14" >DespesaFixa</text>
+<rect x="880" y="759" width="165" height="40" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="880" y="759" width="165" height="40" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="962.5" y="784.0" text-anchor="middle" font-weight="bold" font-size="14" >DespesaPorPessoa</text>
+<rect x="60" y="946" width="274" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="60" y="946" width="274" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="197.0" y="970.0" text-anchor="middle" font-size="12">«checked»</text>
+<text x="197.0" y="984.3" text-anchor="middle" font-weight="bold" font-size="14" >ArquivoNaoEncontradoException</text>
+<rect x="60" y="1023" width="232" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="60" y="1023" width="232" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="176.0" y="1047.0" text-anchor="middle" font-size="12">«checked»</text>
+<text x="176.0" y="1061.3" text-anchor="middle" font-weight="bold" font-size="14" >ArquivoInvalidoException</text>
+<rect x="450" y="984" width="207" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="450" y="984" width="207" height="52" fill="#EEF3FA" stroke="#222" stroke-width="1.3"/>
+<text x="553.5" y="1008.0" text-anchor="middle" font-size="12">«checked»</text>
+<text x="553.5" y="1022.3" text-anchor="middle" font-weight="bold" font-size="14" >PersistenciaException</text>
+<rect x="767" y="984" width="106" height="52" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<rect x="767" y="984" width="106" height="52" fill="#F3F3F3" stroke="#222" stroke-width="1.3"/>
+<text x="820.0" y="1008.0" text-anchor="middle" font-size="12">«Java»</text>
+<text x="820.0" y="1022.3" text-anchor="middle" font-weight="bold" font-size="14" >Exception</text>
+<path d="M 124.0,40.0 L 445.0,40.0 L 445.0,145.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="134.0" y="33.0" text-anchor="start" font-size="12">inicializa</text>
+<path d="M 523.0,165.0 L 910.0,165.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#tri)"/>
+<path d="M 445.0,185.0 L 445.0,223.0" fill="none" stroke="#222" stroke-width="1.3" marker-start="url(#losango)"/>
+<path d="M 165.0,223.0 L 719.5,223.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 165.0,223.0 L 165.0,255.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<text x="171.0" y="249.0" text-anchor="start" font-size="12">1</text>
+<path d="M 445.0,223.0 L 445.0,255.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<text x="451.0" y="249.0" text-anchor="start" font-size="12">1</text>
+<path d="M 719.5,223.0 L 719.5,255.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<text x="725.5" y="249.0" text-anchor="start" font-size="12">1</text>
+<path d="M 200.0,295.0 L 200.0,317.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 480.0,295.0 L 480.0,317.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 754.5,295.0 L 754.5,317.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 200.0,317.0 L 910.0,317.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#tri)"/>
+<path d="M 130.0,295.0 L 130.0,420.0 L 368.0,420.0 L 368.0,442.0" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M 130.0,295.0 L 130.0,420.0 L 368.0,420.0 L 368.0,442.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#seta)"/>
+<path d="M 410.0,295.0 L 410.0,442.0" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M 410.0,295.0 L 410.0,442.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#seta)"/>
+<path d="M 684.5,295.0 L 684.5,420.0 L 523.0,420.0 L 523.0,442.0" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M 684.5,295.0 L 684.5,420.0 L 523.0,420.0 L 523.0,442.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#seta)"/>
+<path d="M 367.0,165.0 L 40.0,165.0 L 40.0,457.0 L 338.0,457.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="46.0" y="451.0" text-anchor="start" font-size="12">cria</text>
+<path d="M 338.0,487.0 L 161.0,487.0 L 161.0,632.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="167.0" y="624.0" text-anchor="start" font-size="12">utiliza</text>
+<path d="M 354.0,502.0 L 354.0,770.0 L 265.0,770.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="273.0" y="764.0" text-anchor="start" font-size="12">instancia</text>
+<path d="M 368.0,502.0 L 368.0,959.0 L 490.0,959.0 L 490.0,984.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="496.0" y="976.0" text-anchor="start" font-size="12">lança</text>
+<path d="M 500.0,502.0 L 500.0,632.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#seta)"/>
+<text x="506.0" y="624.0" text-anchor="start" font-size="12">1  gerencia</text>
+<path d="M 553.0,472.0 L 1086.0,472.0 L 1086.0,821.0 L 776.5,821.0 L 776.5,799.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<path d="M 962.5,821.0 L 962.5,799.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="1080.0" y="465.0" text-anchor="end" font-size="12">instancia</text>
+<path d="M 170.0,744.0 L 170.0,684.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#tri)"/>
+<path d="M 277.0,658.0 L 430.0,658.0" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M 277.0,658.0 L 430.0,658.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="283.0" y="676.0" text-anchor="start" font-size="12">salva /</text>
+<text x="283.0" y="692.0" text-anchor="start" font-size="12">carrega</text>
+<path d="M 105.0,796.0 L 105.0,946.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="111.0" y="938.0" text-anchor="start" font-size="12">lança</text>
+<path d="M 75.0,780.0 L 36.0,780.0 L 36.0,1049.0 L 60.0,1049.0" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#seta)"/>
+<text x="42.0" y="875.0" text-anchor="start" font-size="12">lança</text>
+<path d="M 460.0,684.0 L 460.0,769.0" fill="none" stroke="#222" stroke-width="1.3" marker-start="url(#losango)"/>
+<text x="452.0" y="702.0" text-anchor="end" font-size="12">1</text>
+<text x="452.0" y="763.0" text-anchor="end" font-size="12">0..*</text>
+<text x="468.0" y="730.5" text-anchor="start" font-size="12">participantes</text>
+<path d="M 561.0,648.0 L 820.0,648.0" fill="none" stroke="#222" stroke-width="1.3" marker-start="url(#losango)"/>
+<text x="585.0" y="641.0" text-anchor="start" font-size="12">1</text>
+<text x="814.0" y="641.0" text-anchor="end" font-size="12">0..*</text>
+<text x="710.5" y="641.0" text-anchor="middle" font-size="12">despesas</text>
+<path d="M 820.0,672.0 L 638.0,672.0 L 638.0,789.0 L 561.0,789.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#seta)"/>
+<text x="814.0" y="688.0" text-anchor="end" font-size="12">0..*</text>
+<text x="569.0" y="782.0" text-anchor="start" font-size="12">1..*</text>
+<text x="644.0" y="807.0" text-anchor="start" font-size="12">envolvidos</text>
+<path d="M 776.5,759.0 L 776.5,722.0 L 962.5,722.0 L 962.5,759.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 868.0,722.0 L 868.0,684.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#tri)"/>
+<path d="M 334.0,972.0 L 359.0,972.0 L 359.0,1049.0 L 292.0,1049.0" fill="none" stroke="#222" stroke-width="1.3"/>
+<path d="M 359.0,1010.0 L 450.0,1010.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#tri)"/>
+<path d="M 657.0,1010.0 L 767.0,1010.0" fill="none" stroke="#222" stroke-width="1.3" marker-end="url(#tri)"/>
+</svg>
