@@ -1,0 +1,44 @@
+﻿=== Caso de referÛncia ===
+[OK] Total Ana | esperado: 75,00 | obtido: 75,00
+[OK] Total Bruno | esperado: 60,00 | obtido: 60,00
+[OK] Total Carla | esperado: 75,00 | obtido: 75,00
+[OK] Custo total | esperado: 210,00 | obtido: 210,00
+Bruno aparece no rateio da atividade? false (quem nÒo participa contribui com zero)
+[OK] Excedente Ana | esperado: 5,00 | obtido: 5,00
+[OK] Excedente Carla | esperado: 5,00 | obtido: 5,00
+Bruno dentro do orþamento (total = limite)? true
+Transporte (Fixa) - R$ 90,00 -> rateio 1=30,00 2=30,00 3=30,00 | custo da despesa: 90,00
+Almoþo (Por pessoa) - R$ 20,00 -> rateio 1=20,00 2=20,00 3=20,00 | custo da despesa: 60,00
+Atividade recreativa (Fixa) - R$ 30,00 -> rateio 1=15,00 3=15,00 | custo da despesa: 30,00
+Sobremesa (Por pessoa) - R$ 10,00 -> rateio 1=10,00 2=10,00 3=10,00 | custo da despesa: 30,00
+
+=== Centavos no rateio ===
+[OK] C¾digo 1 | esperado: 33,34 | obtido: 33,34
+[OK] C¾digo 2 | esperado: 33,33 | obtido: 33,33
+[OK] C¾digo 3 | esperado: 33,33 | obtido: 33,33
+[OK] Soma | esperado: 100,00 | obtido: 100,00
+
+=== Validaþ§es ===
+Erro: O valor da despesa deve ser maior que zero!
+Erro: O valor da despesa deve ser maior que zero!
+Erro: Selecione pelo menos um participante!
+Erro: O participante Ana foi selecionado mais de uma vez!
+Erro: Adicione uma descriþÒo para a despesa!
+Erro: O participante Davi nÒo estß cadastrado neste planejamento!
+[OK] Quantidade de despesas nÒo mudou | esperado: 4 | obtido: 4
+[OK] Custo total nÒo mudou | esperado: 210,00 | obtido: 210,00
+
+=== Editar despesa ===
+[OK] Total Ana depois de editar | esperado: 70,00 | obtido: 70,00
+[OK] Total Bruno depois de editar | esperado: 70,00 | obtido: 70,00
+[OK] Custo total continua | esperado: 210,00 | obtido: 210,00
+PosiþÒo da atividade na lista (0 = primeira): 2 (esperado: 2, a mesma de antes)
+[OK] Custo total com almoþo fixo | esperado: 210,00 | obtido: 210,00
+Tipo do almoþo agora: Fixa
+
+=== Excluir despesa ===
+[OK] Total Ana | esperado: 60,00 | obtido: 60,00
+[OK] Total Bruno | esperado: 60,00 | obtido: 60,00
+[OK] Total Carla | esperado: 60,00 | obtido: 60,00
+[OK] Custo total | esperado: 180,00 | obtido: 180,00
+Erro: NÒo Ú possÝvel excluir: o participante estß vinculado a uma despesa.

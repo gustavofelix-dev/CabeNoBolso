@@ -1,0 +1,346 @@
+
+@startuml
+title Cabe no Bolso - Diagrama de classes completo
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #333333
+  ArrowColor #333333
+}
+
+' ============================================================
+' INICIALIZACAO
+' ============================================================
+
+class Main {
+  + {static} main(args : String[]) : void
+}
+
+' ============================================================
+' PACOTE visao
+' ============================================================
+
+package "visao" {
+
+  class JanelaPrincipal {
+    + JanelaPrincipal()
+  }
+
+  class PainelParticipantes {
+    - controller : PlanejamentoController
+    - campoCodigo : JTextField
+    - campoNome : JTextField
+    - campoOrcamento : JTextField
+    - botaoCadastrar : JButton
+    - botaoEditar : JButton
+    - botaoLimpar : JButton
+    - tabela : JTable
+    - modeloTabela : DefaultTableModel
+    + PainelParticipantes(controller : PlanejamentoController)
+    + atualizarPainel() : void
+    - cadastrar() : void
+    - editar() : void
+    - selecionarParticipante() : void
+    - atualizarTabela() : void
+    - limparCampos() : void
+  }
+
+  class PainelDespesas {
+    - controller : PlanejamentoController
+    - campoDescricao : JTextField
+    - campoValor : JTextField
+    - campoTipo : JComboBox<String>
+    - botaoCadastrar : JButton
+    - botaoEditar : JButton
+    - botaoExcluir : JButton
+    - botaoLimpar : JButton
+    - tabela : JTable
+    - modeloTabela : DefaultTableModel
+    - painelParticipantes : JPanel
+    - caixas : Map<Integer, JCheckBox>
+    + PainelDespesas(controller : PlanejamentoController)
+    + atualizarParticipantes() : void
+    + atualizarPainel() : void
+    - obterSelecionados() : List<Integer>
+    - cadastrar() : void
+    - editar() : void
+    - excluir() : void
+    - selecionarDespesa() : void
+    - atualizarTabela() : void
+    - limparCampos() : void
+    - mostrarErro(mensagem : String) : void
+  }
+
+  class PainelResumo {
+    - controller : PlanejamentoController
+    - labelCustoTotal : JLabel
+    - labelQuantidade : JLabel
+    - tabela : JTable
+    - modeloTabela : DefaultTableModel
+    - tabelaDespesas : JTable
+    - modeloTabelaDespesas : DefaultTableModel
+    + PainelResumo(controller : PlanejamentoController)
+    + atualizarResumo() : void
+    - formatarValor(centavos : int) : String
+  }
+}
+
+' ============================================================
+' PACOTE controlador
+' ============================================================
+
+package "controlador" {
+
+  class PlanejamentoController {
+    - planejamento : Planejamento
+    + PlanejamentoController()
+    + cadastrarParticipante(codigo : int, nome : String, orcamento : String) : void
+    + editarParticipante(codigo : int, nome : String, orcamento : String) : void
+    + listarParticipantes() : Collection<Participante>
+    + cadastrarDespesa(descricao : String, valor : String, tipo : String, codigos : List<Integer>) : void
+    + editarDespesa(antiga : Despesa, descricao : String, valor : String, tipo : String, codigos : List<Integer>) : void
+    + excluirDespesa(despesa : Despesa) : void
+    + listarDespesas() : List<Despesa>
+    + calcularCustoTotal() : int
+    + calcularTotalDoParticipante(codigo : int) : int
+    + estaDentroDoOrcamento(codigo : int) : boolean
+    + calcularExcedente(codigo : int) : int
+    + salvarPlanejamento(arquivo : File) : void
+    + carregarPlanejamento(arquivo : File) : void
+    - criarDespesa(descricao : String, valor : String, tipo : String, codigos : List<Integer>) : Despesa
+    - converterParaCentavos(valor : String) : int
+  }
+}
+
+' ============================================================
+' PACOTE modelo
+' ============================================================
+
+package "modelo" {
+
+  class Participante {
+    - codigo : int {readOnly}
+    - nome : String
+    - orcamentoCentavos : int
+    + Participante(codigo : int, nome : String, orcamentoCentavos : int)
+    + getCodigo() : int
+    + getNome() : String
+    + setNome(nome : String) : void
+    + getOrcamentoCentavos() : int
+    + setOrcamentoCentavos(orcamentoCentavos : int) : void
+    + toString() : String
+  }
+
+  abstract class Despesa {
+    - descricao : String
+    - valorCentavos : int
+    - participantes : TreeMap<Integer, Participante>
+    # Despesa(descricao : String, valorCentavos : int, participantes : List<Participante>)
+    + {abstract} calcularRateio() : Map<Integer, Integer>
+    + {abstract} getTipo() : String
+    + getDescricao() : String
+    + getValorCentavos() : int
+    + getParticipantes() : List<Participante>
+    + calcularCustoTotal() : int
+    + toString() : String
+  }
+
+  class DespesaFixa {
+    + DespesaFixa(descricao : String, valorCentavos : int, participantes : List<Participante>)
+    + calcularRateio() : Map<Integer, Integer>
+    + getTipo() : String
+  }
+
+  class DespesaPorPessoa {
+    + DespesaPorPessoa(descricao : String, valorPorPessoaCentavos : int, participantes : List<Participante>)
+    + calcularRateio() : Map<Integer, Integer>
+    + getTipo() : String
+  }
+
+  class Planejamento {
+    - participantes : TreeMap<Integer, Participante>
+    - despesas : List<Despesa>
+    + cadastrarParticipante(codigo : int, nome : String, orcamentoCentavos : int) : void
+    + buscarParticipante(codigo : int) : Participante
+    + alterarParticipante(codigo : int, novoNome : String, novoOrcamentoCentavos : int) : void
+    + excluirParticipante(codigo : int) : void
+    + getTodosParticipantes() : Collection<Participante>
+    + incluirDespesa(d : Despesa) : void
+    + editarDespesa(antiga : Despesa, nova : Despesa) : void
+    + excluirDespesa(d : Despesa) : void
+    + getDespesas() : List<Despesa>
+    + calcularTotalDoParticipante(codigo : int) : int
+    + calcularCustoTotal() : int
+    + estaDentroDoOrcamento(codigo : int) : boolean
+    + calcularExcedente(codigo : int) : int
+    - validarParticipantesCadastrados(d : Despesa) : void
+  }
+}
+
+' ============================================================
+' PACOTE excecoes
+' ============================================================
+
+package "excecoes" {
+
+  class PersistenciaException <<checked>> {
+    + PersistenciaException(mensagem : String)
+    + PersistenciaException(mensagem : String, causa : Throwable)
+  }
+
+  class ArquivoNaoEncontradoException <<checked>> {
+    + ArquivoNaoEncontradoException(mensagem : String)
+    + ArquivoNaoEncontradoException(mensagem : String, causa : Throwable)
+  }
+
+  class ArquivoInvalidoException <<checked>> {
+    + ArquivoInvalidoException(mensagem : String)
+    + ArquivoInvalidoException(mensagem : String, causa : Throwable)
+  }
+}
+
+' ============================================================
+' PACOTE persistencia
+' ============================================================
+
+package "persistencia" {
+
+  interface PersistenciaPlanejamento {
+    + salvar(planejamento : Planejamento) : void
+    + carregar() : Planejamento
+  }
+
+  class PersistenciaArquivo {
+    - caminho : Path {readOnly}
+    + PersistenciaArquivo(caminho : String)
+    + PersistenciaArquivo(arquivo : File)
+    + getCaminho() : String
+    + salvar(planejamento : Planejamento) : void
+    + carregar() : Planejamento
+    - apagarTemporario(temporario : Path) : void
+  }
+}
+
+' ============================================================
+' TIPOS DA BIBLIOTECA JAVA
+' ============================================================
+
+class Exception <<Java>>
+class JFrame <<Swing>>
+class JPanel <<Swing>>
+interface Serializable <<Java>>
+
+' ============================================================
+' HERANCA
+' ============================================================
+
+Despesa <|-- DespesaFixa
+Despesa <|-- DespesaPorPessoa
+
+Exception <|-- PersistenciaException
+PersistenciaException <|-- ArquivoNaoEncontradoException
+PersistenciaException <|-- ArquivoInvalidoException
+
+JFrame <|-- JanelaPrincipal
+JPanel <|-- PainelParticipantes
+JPanel <|-- PainelDespesas
+JPanel <|-- PainelResumo
+
+' ============================================================
+' REALIZACAO DE INTERFACES
+' ============================================================
+
+PersistenciaPlanejamento <|.. PersistenciaArquivo
+
+Serializable <|.. Participante
+Serializable <|.. Despesa
+Serializable <|.. Planejamento
+
+' ============================================================
+' COMPOSICAO E ASSOCIACAO
+' ============================================================
+
+Planejamento "1" *-- "0..*" Participante : participantes
+Planejamento "1" *-- "0..*" Despesa : despesas
+
+Despesa "0..*" --> "1..*" Participante : envolvidos
+
+JanelaPrincipal "1" *-- "1" PainelParticipantes
+JanelaPrincipal "1" *-- "1" PainelDespesas
+JanelaPrincipal "1" *-- "1" PainelResumo
+
+PainelParticipantes --> PlanejamentoController
+PainelDespesas --> PlanejamentoController
+PainelResumo --> PlanejamentoController
+
+PlanejamentoController --> "1" Planejamento : gerencia
+
+' ============================================================
+' DEPENDENCIAS
+' ============================================================
+
+Main ..> JanelaPrincipal : inicializa
+
+JanelaPrincipal ..> PlanejamentoController : cria
+JanelaPrincipal ..> PersistenciaException : trata
+
+PainelParticipantes ..> Participante : consulta
+PainelDespesas ..> Participante : consulta
+PainelDespesas ..> Despesa : consulta
+PainelResumo ..> Participante : consulta
+PainelResumo ..> Despesa : consulta
+
+PlanejamentoController ..> Participante : consulta
+PlanejamentoController ..> Despesa : manipula
+PlanejamentoController ..> DespesaFixa : instancia
+PlanejamentoController ..> DespesaPorPessoa : instancia
+
+PlanejamentoController ..> PersistenciaPlanejamento : utiliza
+PlanejamentoController ..> PersistenciaArquivo : instancia
+PlanejamentoController ..> PersistenciaException : lanca
+
+PersistenciaPlanejamento ..> Planejamento : salva / carrega
+PersistenciaPlanejamento ..> PersistenciaException : lanca
+PersistenciaArquivo ..> ArquivoNaoEncontradoException : lanca
+PersistenciaArquivo ..> ArquivoInvalidoException : lanca
+
+' ============================================================
+' NOTAS EXPLICATIVAS
+' ============================================================
+
+note right of PlanejamentoController
+  Intermediario entre a interface grafica
+  e o modelo. Converte valores monetarios
+  para centavos utilizando BigDecimal.
+end note
+
+note right of PersistenciaPlanejamento
+  Contrato de persistencia utilizado
+  pelo controlador, que instancia
+  PersistenciaArquivo e opera por
+  meio desta interface.
+end note
+
+note bottom of Planejamento
+  Participante, Despesa e Planejamento
+  implementam Serializable e declaram
+  serialVersionUID.
+end note
+
+note bottom of Despesa
+  Polimorfismo: cada subclasse implementa
+  calcularRateio() de acordo com seu tipo.
+end note
+
+note top of JanelaPrincipal
+  Organiza as tres abas da aplicacao
+  e os botoes de salvar e carregar.
+  Os paineis compartilham o mesmo
+  controlador.
+end note
+
+@enduml

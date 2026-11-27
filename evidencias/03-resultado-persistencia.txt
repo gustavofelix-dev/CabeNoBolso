@@ -1,0 +1,72 @@
+﻿=== Salvar e reiniciar (caso de referÛncia) ===
+[OK] ╔ outro objeto (nÒo o mesmo da mem¾ria) | esperado: true | obtido: true
+[OK] Quantidade de participantes | esperado: 3 | obtido: 3
+[OK] Quantidade de despesas (sem duplicar) | esperado: 4 | obtido: 4
+[OK] Nome do participante 1 | esperado: Ana | obtido: Ana
+[OK] Orþamento da Ana (centavos) | esperado: 7000 | obtido: 7000
+[OK] Orþamento do Bruno (centavos) | esperado: 6000 | obtido: 6000
+[OK] Total Ana | esperado: 7500 | obtido: 7500
+[OK] Total Bruno | esperado: 6000 | obtido: 6000
+[OK] Total Carla | esperado: 7500 | obtido: 7500
+[OK] Custo total | esperado: 21000 | obtido: 21000
+[OK] Excedente Ana | esperado: 500 | obtido: 500
+[OK] Excedente Bruno | esperado: 0 | obtido: 0
+[OK] Excedente Carla | esperado: 500 | obtido: 500
+[OK] Bruno dentro do orþamento (total = limite) | esperado: true | obtido: true
+[OK] 1¬ despesa | esperado: Transporte | obtido: Transporte
+[OK] Tipo da 1¬ despesa | esperado: Fixa | obtido: Fixa
+[OK] Tipo da 2¬ despesa | esperado: Por pessoa | obtido: Por pessoa
+[OK] Classe da 1¬ despesa | esperado: DespesaFixa | obtido: DespesaFixa
+[OK] Classe da 2¬ despesa | esperado: DespesaPorPessoa | obtido: DespesaPorPessoa
+[OK] Participante da despesa Ú o mesmo do cadastro | esperado: true | obtido: true
+[OK] Ana dentro do orþamento com R$ 80,00 | esperado: true | obtido: true
+[OK] Total da Ana continua R$ 75,00 | esperado: 7500 | obtido: 7500
+[OK] Excedente Ana com R$ 80,00 | esperado: 0 | obtido: 0
+[OK] Original intacto (orþamento da Ana) | esperado: 7000 | obtido: 7000
+
+=== Salvar duas vezes no mesmo arquivo ===
+[OK] Despesas depois de salvar 2 vezes | esperado: 4 | obtido: 4
+[OK] Participantes depois de salvar 2 vezes | esperado: 3 | obtido: 3
+[OK] Despesas depois de excluir e salvar | esperado: 3 | obtido: 3
+[OK] Total por pessoa sem a atividade | esperado: 6000 | obtido: 6000
+[OK] Custo total sem a atividade | esperado: 18000 | obtido: 18000
+[OK] Arquivos .tmp sobrando na pasta | esperado: 0 | obtido: 0
+
+=== Planejamento vazio ===
+[OK] Participantes | esperado: 0 | obtido: 0
+[OK] Despesas | esperado: 0 | obtido: 0
+[OK] Custo total | esperado: 0 | obtido: 0
+
+=== Arquivo ausente ===
+Mensagem: Arquivo nÒo encontrado: "C:\Users\gusta\AppData\Local\Temp\teste_persistencia13332740747379362682\nao_existe.dat".
+[OK] ExceþÒo correta (ArquivoNaoEncontradoException) | esperado: true | obtido: true
+[OK] Planejamento em uso preservado (despesas) | esperado: 4 | obtido: 4
+[OK] Planejamento vazio iniciado | esperado: 0 | obtido: 0
+
+=== Arquivos invßlidos ===
+Arquivo de texto -> O arquivo "C:\Users\gusta\AppData\Local\Temp\teste_persistencia13332740747379362682\texto.dat" nÒo Ú um arquivo de planejamento vßlido ou estß corrompido.
+[OK] Arquivo de texto: ArquivoInvalidoException | esperado: true | obtido: true
+[OK] Arquivo de texto: planejamento em uso preservado | esperado: 21000 | obtido: 21000
+Arquivo vazio -> O arquivo "C:\Users\gusta\AppData\Local\Temp\teste_persistencia13332740747379362682\zero_bytes.dat" estß vazio ou incompleto.
+[OK] Arquivo vazio: ArquivoInvalidoException | esperado: true | obtido: true
+[OK] Arquivo vazio: planejamento em uso preservado | esperado: 21000 | obtido: 21000
+Arquivo cortado no meio -> O arquivo "C:\Users\gusta\AppData\Local\Temp\teste_persistencia13332740747379362682\cortado.dat" estß vazio ou incompleto.
+[OK] Arquivo cortado no meio: ArquivoInvalidoException | esperado: true | obtido: true
+[OK] Arquivo cortado no meio: planejamento em uso preservado | esperado: 21000 | obtido: 21000
+Objeto de outro tipo -> O arquivo "C:\Users\gusta\AppData\Local\Temp\teste_persistencia13332740747379362682\outro_tipo.dat" nÒo contÚm um planejamento.
+[OK] Objeto de outro tipo: ArquivoInvalidoException | esperado: true | obtido: true
+[OK] Objeto de outro tipo: planejamento em uso preservado | esperado: 21000 | obtido: 21000
+
+=== Caminhos invßlidos ===
+Erro: Informe o caminho do arquivo!
+[OK] Caminho vazio recusado | esperado: true | obtido: true
+[OK] Caminho nulo recusado | esperado: true | obtido: true
+Erro: NÒo foi possÝvel salvar: "C:\Users\gusta\AppData\Local\Temp\teste_persistencia13332740747379362682" Ú uma pasta, nÒo um arquivo.
+[OK] Salvar em uma pasta recusado | esperado: true | obtido: true
+[OK] Carregar de uma pasta recusado | esperado: true | obtido: true
+Erro: NÒo hß planejamento para salvar!
+[OK] Salvar planejamento nulo recusado | esperado: true | obtido: true
+[OK] Pasta inexistente criada ao salvar | esperado: true | obtido: true
+
+=== Resumo ===
+50 verificaþ§es, 0 falha(s).
