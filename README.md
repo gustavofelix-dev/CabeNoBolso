@@ -33,10 +33,10 @@ O projeto foi desenvolvido coletivamente pelos integrantes do Grupo 44, com divi
 
 | Integrante | Responsabilidade |
 |---|---|
-| Carlos Humberto Costa de Oliveira | Modelo — Parte B |
+| Carlos Humberto Costa de Oliveira | Modelo — Parte B - regras de negócio |
 | Cauã Henry Barbosa Moreira | Persistência, tratamento de exceções e diagrama UML |
 | Gustavo Felix de Oliveira | Testes, evidências, relatório técnico e README |
-| João Bôsco Trindade de Freitas Neto | Modelo — Parte A |
+| João Bôsco Trindade de Freitas Neto | Modelo — Parte A - classes do modelo |
 | Luiz Guilherme Clarindo Pinheiro | Interface gráfica Java Swing — Partes A e B |
 
 Todos os integrantes recebem os créditos pelas respectivas contribuições ao desenvolvimento do projeto.
